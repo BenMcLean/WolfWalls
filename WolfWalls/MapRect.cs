@@ -12,7 +12,7 @@ namespace WolfWalls
 		public int Y;
 		public int Width;
 		public int Height;
-		public static List<MapRect> MapRects(bool[][] input)
+		public static IEnumerable<MapRect> MapRects(bool[][] input)
 		{
 			bool[][] map = new bool[input.Length][];
 			for (int i = 0; i < input.Length; i++)
@@ -20,15 +20,13 @@ namespace WolfWalls
 				map[i] = new bool[input[i].Length];
 				Array.Copy(input[i], map[i], input[i].Length);
 			}
-			List<MapRect> list = new List<MapRect>();
 			while (NextRect(map) is MapRect rect)
 			{
 				for (int x = rect.X; x < rect.X + rect.Width; x++)
 					for (int y = rect.Y; y < rect.Y + rect.Height; y++)
 						map[x][y] = false;
-				list.Add(rect);
+				yield return rect;
 			}
-			return list;
 		}
 		private static MapRect? NextRect(bool[][] map)
 		{

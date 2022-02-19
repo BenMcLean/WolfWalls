@@ -22,8 +22,7 @@ namespace WolfWalls
 			SixLabors.ImageSharp.Image.LoadPixelData<SixLabors.ImageSharp.PixelFormats.Rgba32>(image, map.Length, map.Length)
 				.SaveAsPng("frame0.png");
 			int frames = 0;
-			List<MapRect> list = MapRect.MapRects(map);
-			foreach (MapRect rect in list)
+			foreach (MapRect rect in MapRect.MapRects(map))
 			{
 				frames++;
 				image.DrawRectangle(palette[frames % palette.Length], rect.X, rect.Y, rect.Width, rect.Height, map.Length);
