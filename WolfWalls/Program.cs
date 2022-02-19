@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SixLabors.ImageSharp;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,9 +15,13 @@ namespace WolfWalls
 			if (!args?.Any() ?? false)
 				throw new InvalidDataException();
 			bool[][] map = LoadMap(args[0]);
-			foreach (bool[] row in map)
-				Console.WriteLine(string.Join(",", row.Select(e => e ? "1" : "0")));
-			Console.ReadKey();
+			byte[] image = new byte[map.Length * map.Length * 4];
+			for (int x = 0; x < map.Length; x++)
+				for (int y = 0; y < map[x].Length; y++)
+					if (!map[x][y])
+						image.DrawPixel(140, 140, 140, 255, x, y, map.Length);
+			Image.LoadPixelData<SixLabors.ImageSharp.PixelFormats.Rgba32>(image, map.Length, map.Length)
+				.SaveAsPng("output.png");
 		}
 		public static bool[][] LoadMap(string path)
 		{
