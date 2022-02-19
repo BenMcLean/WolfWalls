@@ -70,7 +70,7 @@ namespace WolfWalls
 		{
 			for (int x2 = x; x2 < width; x2++)
 				for (int y2 = y; y2 < height; y2++)
-					map[x2][y2] = false;
+					map[x2][y2] = true;
 			return map;
 		}
 	}
