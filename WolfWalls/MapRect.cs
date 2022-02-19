@@ -23,7 +23,9 @@ namespace WolfWalls
 			List<MapRect> list = new List<MapRect>();
 			while (NextRect(map) is MapRect rect)
 			{
-				rect.FillIn(map);
+				for (int x = rect.X; x < rect.X + rect.Width; x++)
+					for (int y = rect.Y; y < rect.Y + rect.Height; y++)
+						map[x][y] = false;
 				list.Add(rect);
 			}
 			return list;
@@ -33,20 +35,22 @@ namespace WolfWalls
 			if (!NextEmpty(map, out int x, out int y))
 				return null;
 			int width = 1;
-			for (; x + width < map.Length; width++)
-				if (!map[x + width][y])
-				{
-					width--;
+			for (; x + width + 1 < map.Length; width++)
+				if (!map[x + width + 1][y])
 					break;
-				}
 			int height = 1;
-			for (; y + height < map[x].Length; height++)
+			bool done = false;
+			for (; y + height + 1 < map[x].Length; height++)
+			{
 				for (int i = x; i < x + width; i++)
-					if (!map[i][y + height])
+					if (!map[i][y + height + 1])
 					{
-						height--;
+						done = true;
 						break;
 					}
+				if (done)
+					break;
+			}
 			return new MapRect
 			{
 				X = x,
@@ -60,18 +64,9 @@ namespace WolfWalls
 			y = 0;
 			for (x = 0; x < map.Length; x++)
 				for (; y < map[x].Length; y++)
-					if (!map[x][y])
+					if (map[x][y])
 						return true;
 			return false;
-		}
-		private bool[][] FillIn(bool[][] map) => FillIn(map, this);
-		private static bool[][] FillIn(bool[][] map, MapRect mapRect) => FillIn(map, mapRect.X, mapRect.Y, mapRect.Width, mapRect.Height);
-		private static bool[][] FillIn(bool[][] map, int x, int y, int width, int height)
-		{
-			for (int x2 = x; x2 < width; x2++)
-				for (int y2 = y; y2 < height; y2++)
-					map[x2][y2] = true;
-			return map;
 		}
 	}
 }

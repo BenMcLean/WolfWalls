@@ -15,15 +15,13 @@ namespace WolfWalls
 			bool[][] map = LoadMap(args[0]);
 			int[] palette = TextureMethods.LoadPalette(File.ReadAllText(@".\..\..\..\yamble.pal"));
 			byte[] image = new byte[map.Length * map.Length * 4];
-			SixLabors.ImageSharp.Image.LoadPixelData<SixLabors.ImageSharp.PixelFormats.Rgba32>(image, map.Length, map.Length)
-				.SaveAsPng("frame0.png");
 			for (int x = 0; x < map.Length; x++)
 				for (int y = 0; y < map[x].Length; y++)
 					if (!map[x][y])
 						image.DrawPixel(140, 140, 140, 255, x, y, map.Length);
 			SixLabors.ImageSharp.Image.LoadPixelData<SixLabors.ImageSharp.PixelFormats.Rgba32>(image, map.Length, map.Length)
-				.SaveAsPng("frame1.png");
-			int frames = 1;
+				.SaveAsPng("frame0.png");
+			int frames = 0;
 			foreach (MapRect rect in MapRect.MapRects(map))
 			{
 				frames++;
