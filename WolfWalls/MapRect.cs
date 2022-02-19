@@ -35,15 +35,15 @@ namespace WolfWalls
 			if (!NextEmpty(map, out int x, out int y))
 				return null;
 			int width = 1;
-			for (; x + width + 1 < map.Length; width++)
-				if (!map[x + width + 1][y])
+			for (; x + width < map.Length; width++)
+				if (!map[x + width][y])
 					break;
 			int height = 1;
 			bool done = false;
-			for (; y + height + 1 < map[x].Length; height++)
+			for (; y + height < map[x].Length; height++)
 			{
 				for (int i = x; i < x + width; i++)
-					if (!map[i][y + height + 1])
+					if (!map[i][y + height])
 					{
 						done = true;
 						break;
@@ -63,7 +63,7 @@ namespace WolfWalls
 		{
 			y = 0;
 			for (x = 0; x < map.Length; x++)
-				for (; y < map[x].Length; y++)
+				for (y = 0; y < map[x].Length; y++)
 					if (map[x][y])
 						return true;
 			return false;
