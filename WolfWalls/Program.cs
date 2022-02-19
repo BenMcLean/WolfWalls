@@ -3,8 +3,6 @@ using SixLabors.ImageSharp;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WolfWalls
 {
@@ -22,6 +20,7 @@ namespace WolfWalls
 				for (int y = 0; y < map[x].Length; y++)
 					if (!map[x][y])
 						image.DrawPixel(140, 140, 140, 255, x, y, map.Length);
+			List<MapRect> rects = MapRect.MapRects(map);
 			SixLabors.ImageSharp.Image.LoadPixelData<SixLabors.ImageSharp.PixelFormats.Rgba32>(image, map.Length, map.Length)
 				.SaveAsPng("frame1.png");
 			using (AnimatedGifCreator gif = AnimatedGif.AnimatedGif.Create("output.gif", 256))
