@@ -33,22 +33,23 @@ namespace WolfWalls
 			if (!NextEmpty(map, out int x, out int y))
 				return null;
 			int width = 1;
-			for (; x + width < map.Length; width++)
-				if (!map[x + width][y])
-					break;
-			int height = 1;
+			for (; x + width < map.Length && map[x + width][y]; width++) { }
 			bool done = false;
-			for (; y + height < map[x].Length; height++)
-			{
-				for (int i = x; i < x + width; i++)
+			//int height = 0;
+			//while (!done)
+			//{
+			//	if (y + ++height >= map[x].Length)
+			//		done = true;
+			//	int i = x - 1;
+			//	while (!done && ++i < x + width)
+			//		if (!map[i][y + height])
+			//			done = true;
+			//}
+			int height = 1;
+			for (; !done && y + height < map[x].Length; height++)
+				for (int i = x; !done && i < x + width; i++)
 					if (!map[i][y + height])
-					{
 						done = true;
-						break;
-					}
-				if (done)
-					break;
-			}
 			return new MapRect
 			{
 				X = x,
