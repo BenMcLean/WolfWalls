@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MapRectsOverlap.cs" />
+    <Compile Include="MapRectsNoOverlap.cs" />
     <Compile Include="MapRect.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

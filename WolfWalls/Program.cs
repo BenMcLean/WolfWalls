@@ -1,6 +1,5 @@
 ﻿using AnimatedGif;
 using SixLabors.ImageSharp;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -23,7 +22,7 @@ namespace WolfWalls
 			SixLabors.ImageSharp.Image.LoadPixelData<SixLabors.ImageSharp.PixelFormats.Rgba32>(image.Upscale(scale, scale), map.Length * scale, map.Length * scale)
 				.SaveAsPng("frame0.png");
 			int frames = 0;
-			foreach (MapRect rect in MapRect.MapRects(map))
+			foreach (MapRect rect in MapRectsNoOverlap.MapRects(map))
 			{
 				frames++;
 				image.DrawRectangle(palette[frames % palette.Length], rect.X, rect.Y, rect.Width, rect.Height, map.Length);
