@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WolfWalls", "WolfWalls\WolfWalls.csproj", "{71F500D1-6681-452C-B3AD-149D17B95864}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WolfWallsTest", "WolfWallsTest\WolfWallsTest.csproj", "{3B6FF2E8-A576-4EDA-99B5-E29F5C63C20E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{71F500D1-6681-452C-B3AD-149D17B95864}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71F500D1-6681-452C-B3AD-149D17B95864}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71F500D1-6681-452C-B3AD-149D17B95864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B6FF2E8-A576-4EDA-99B5-E29F5C63C20E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B6FF2E8-A576-4EDA-99B5-E29F5C63C20E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B6FF2E8-A576-4EDA-99B5-E29F5C63C20E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B6FF2E8-A576-4EDA-99B5-E29F5C63C20E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

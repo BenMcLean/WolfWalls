@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace WolfWalls
 {
-	public class Program
+	public static class Program
 	{
 		public static void Main(string[] args)
 		{
