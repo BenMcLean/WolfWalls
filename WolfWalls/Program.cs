@@ -39,14 +39,14 @@ namespace WolfWalls
 		{
 			if (!File.Exists(path))
 				throw new FileNotFoundException(path);
-			bool[][] map;
+			bool[][] input;
 			using (StreamReader streamReader = File.OpenText(path))
 			{
 				if (streamReader.ReadLine() is string firstLine)
 				{
 					string[] strings = firstLine.Split(',');
-					map = new bool[strings.Length][];
-					map[0] = GetRow(strings);
+					input = new bool[strings.Length][];
+					input[0] = GetRow(strings);
 				}
 				else throw new InvalidDataException("Could not parse file at \"" + path + "\"");
 				bool[] GetRow(string[] strings)
@@ -58,7 +58,14 @@ namespace WolfWalls
 				}
 				int row = 0;
 				for (string line; (line = streamReader.ReadLine()) != null;)
-					map[++row] = GetRow(line.Split(','));
+					input[++row] = GetRow(line.Split(','));
+			}
+			bool[][] map = new bool[input[0].Length][];
+			for (int x = 0; x < input.Length; x++)
+			{
+				map[x] = new bool[input.Length];
+				for (int y = 0; y < map[x].Length; y++)
+					map[x][y] = input[y][x];
 			}
 			return map;
 		}
